@@ -1,0 +1,184 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+
+    width: 100%;
+    height: 100vh;
+    max-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+
+}
+.form_editar{
+
+    width: 400px;
+    height: auto;
+    background-color: rgb(25, 25, 25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    border-radius: 15px;
+}
+.form_editar h1{
+    color: white;
+    text-align: center;
+
+}
+.area_input{
+    width: 80%;
+    position: relative;
+    margin-top: 60px;
+}
+.label_input{
+    color: white;
+    top: 0;
+    position: relative;
+    pointer-events: none;
+    transition: .5s;
+}
+.input_form{
+
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    position: absolute;
+    color: white;
+}
+.line{
+    height: 2px;
+    width: 100%;
+    background-color: white;
+}
+
+.input_form:valid ~ .label_input, .input_form:focus ~ .label_input{
+
+    top: -30px;
+
+}
+.line::before{
+
+    content: "";
+    position: absolute;
+    left: 0;
+     
+    height: 2px;
+    width: 0%;
+    transition: 1s;
+    background-color: rgb(1, 1, 85);
+}
+.input_form:valid ~ .line::before, .input_form:focus ~ .line::before{
+
+    width: 100%;
+
+}
+.area_img{
+
+    height: 170px;
+    width: 170px;
+    
+    background-color: blue;
+    border-radius: 10000%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    
+
+}
+.area_img:hover .img_perfil{
+
+    height: 97%;
+    width: 97%;
+
+}
+.area_img::after{
+
+    content: '';
+    position: absolute;
+    height: 240px;
+    width: 10px;
+    background-color: white;
+    animation: rotating 5s linear infinite ;
+    pointer-events: none;
+
+    
+
+}
+.area_img::before{
+
+    content: '';
+    position: absolute;
+    width: 240px;
+    height: 10px;
+    background-color: white;
+    animation: rotating 5s linear infinite ;
+    pointer-events: none;
+
+}
+@keyframes rotating {
+    0%{
+
+        transform: rotate(0deg);
+    }
+    100%{
+
+        transform: rotate(360deg);
+
+
+    }
+}
+
+.img_perfil{
+    height: 102%;
+    width: 102%;
+    cursor: pointer;
+    transition: .4s;
+    border-radius: 100%;
+    object-fit: cover;
+    position: absolute;
+    z-index: 2;
+    pointer-events: none;
+}
+.area_input_img{
+
+    width: 100%;
+    display: flex;
+    margin-top: 30px;
+    justify-content: center;
+
+}
+.input_img{
+
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    opacity: 0;
+
+}
+.btn_sub{
+
+    height: 30px;
+    width: 50%;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: .5s;
+}
+.btn_sub:hover{
+
+    background-color: black;
+    color: white;
+
+}
+.img_perfil{
+
+    background-color: black;
+
+}
