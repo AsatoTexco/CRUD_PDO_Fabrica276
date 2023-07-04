@@ -97,7 +97,13 @@ class Usuario {
         $sql->execute();
 
         if($sql->rowCount() > 0 ){
+            
+            $dados = [];
+            $dados = $sql->fetchAll(PDO::FETCH_ASSOC)[0];
+            $img_nome = $dados['img_perfil'];
 
+            unlink('imgs_perfil/'.$img_nome);
+            
             $sql = $this->pdo->prepare('DELETE FROM user WHERE id_user = :id');
             $sql->bindValue(":id",$id);
             $sql->execute();
