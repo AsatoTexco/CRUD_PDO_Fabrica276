@@ -72,6 +72,13 @@ class Usuario {
     public function editar($id_user, $nome,$email,$senha,$img_perfil){
         try{
 
+            $sql = $this->pdo->prepare("SELECT img_perfil FROM user WHERE id_user = :id");
+            $sql->bindValue(":id",$id_user);
+            $sql->execute();
+
+            $ft_perfil = $sql->fetchAll(PDO::FETCH_ASSOC)[0]['img_perfil'];
+            unlink('imgs_perfil/'.$ft_perfil);
+
             $sql = $this->pdo->prepare("UPDATE user SET nome = :n, email = :e, senha = :s, img_perfil = :img WHERE id_user = :id");
             $sql->bindValue(":n",$nome);
             $sql->bindValue(":e",$email);
@@ -79,6 +86,8 @@ class Usuario {
             $sql->bindValue(":img",$img_perfil);
             $sql->bindValue(":id",$id_user);
             $sql->execute();
+
+            
             return true;
         }
         catch(PDOException $erro){

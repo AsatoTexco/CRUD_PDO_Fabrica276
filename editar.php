@@ -147,7 +147,7 @@ $form_editar = '<form class="form_editar" action="" method="post"  enctype="mult
     <link rel="stylesheet" href="css/editar.css">
 </head>
 <body>
-
+<a href="listar_usuarios.php" class="nav_link">Lista Usuarios</a>
     <?=$form_editar?>
     
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
