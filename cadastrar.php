@@ -17,7 +17,7 @@ if(isset($_FILES['image'])){
 
     $dir_img = $_FILES['image']['tmp_name'];
 
-    echo("<br>".$nome_img_of."<br>");
+     
 
 }
 if(isset($_POST['email']) && isset($_POST['senha']) && isset($_POST['nome']) && isset($_FILES['image']) ){
