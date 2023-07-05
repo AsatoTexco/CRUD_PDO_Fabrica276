@@ -19,7 +19,7 @@ foreach($dados as $row_user){
         <span></span>
         <div class="area_img">
 
-            <img src="imgs_perfil/'.$row_user['img_perfil'].'" class="img_user" alt="">
+            <img src="imgs_perfil'.$row_user['img_perfil'].'" class="img_user" alt="">
         </div>
         <h4>'.$row_user['nome'].'</h4>
         
