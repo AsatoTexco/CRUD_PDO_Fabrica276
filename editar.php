@@ -4,7 +4,7 @@ require 'Usuario.php';
 
 $user = new Usuario;
 
-$user->conectar("teste",'localhost','root','');
+$user->conectar("teste",'localhost','root','ZZ');
 
 if($_GET['id_user']){
 
