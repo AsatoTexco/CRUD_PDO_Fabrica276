@@ -107,7 +107,7 @@ body{
     height: 240px;
     width: 10px;
     background-color: white;
-    animation: rotating 5s linear infinite ;
+    animation: rotating 1s linear infinite ;
     pointer-events: none;
 
     
@@ -120,7 +120,7 @@ body{
     width: 240px;
     height: 10px;
     background-color: white;
-    animation: rotating 5s linear infinite ;
+    animation: rotating 1s linear infinite ;
     pointer-events: none;
 
 }

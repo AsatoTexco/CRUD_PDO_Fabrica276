@@ -21,8 +21,6 @@ $aceitados = ['.jpg','.jpeg','.gif','.png'];
  //=========================== UPDATE ==================================
 if(isset($_FILES['image'])){
 
-     
- 
    if(strlen($_FILES['image']['name']) > 0){
        
        $nome_img = $_FILES['image']['name'];
@@ -45,17 +43,12 @@ if(isset($_FILES['image'])){
            header("Location: editar.php?id_user=".$id_user);
            exit;
        }
-       
-   
-    
    
    }else{
       
        $nome_img_of = $dados['img_perfil'];
       
    }
-
-
 } 
  
 
