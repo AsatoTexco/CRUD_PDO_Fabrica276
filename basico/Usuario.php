@@ -1,73 +1,129 @@
 <?php
 
 
-
 class Usuario{
 
+
     private $pdo;
+    public $error;
 
-    public function conectar(){
-        
+    public function conectarr(){
+
+        $db_name = "teste";
+        $host = 'localhost';
+        $pwd  = '';
+        $db_user = 'root';
+
         try{
-
-            $db_name = "teste";
-            $host = "localhost";
-            $user = 'root';
-            $pwd = '$uP0rT3@22';
-            $this->pdo = new PDO("mysql:dbname=".$db_name.";host=".$host, $user, $pwd);
-            return true;
-
+            $this->pdo = new PDO("mysql:dbname=".$db_name.";host=".$host, $db_user, $pwd);
+           
+      
         }catch(PDOException $erro){
-             
-            echo ($erro->getMessage());
+
+            $this->error = $erro->getMessage();
 
         }
-        
+    
+    }
+    public function cadastrarr($email,$senha,$nome,$telefone){
+
+        $sql = $this->pdo->prepare("SELECT * from user1 WHERE email = :e");
+        $sql->bindValue(":e",$email);
+        $sql->execute();
+
+        if($sql->rowCount() > 0 ){
+             
+            return false;
+        }else{
+
+            $sql = $this->pdo->prepare("INSERT INTO user1(nome,email,senha,telefone) VALUES(:n,:e,:s,:t)");
+            $sql->bindValue(":n",$nome);
+            $sql->bindValue(":e",$email);
+            $sql->bindValue(":s",$senha);
+            $sql->bindValue(":t",$telefone);
+            $sql->execute();
+
+            return true;
+
+        }
+
 
     }
+    public function editarr($id_user,$nome,$email,$senha,$telefone){
 
-    public function cadastrar_user($nome,$email,$senha){
-        
-        $sql = $this->pdo->prepare("SELECT * FROM user WHERE email = :e");
-        $sql->bindValue(":e",$email);
+
+        $sql = $this->pdo->prepare("SELECT * from user1 WHERE id_user = :id");
+        $sql->bindValue(":id",$id_user);
         $sql->execute();
 
         if($sql->rowCount() > 0){
 
-            return false;
-        }else{
-
-
-            $sql = $this->pdo->prepare("INSERT INTO user(email,senha,nome) VALUES(:e,:s,:n)");
+           
+            $sql = $this->pdo->prepare("UPDATE user1 SET nome = :n, email = :e, senha = :s, telefone = :t WHERE id_user = :id");
+            $sql->bindValue(":n",$nome);
             $sql->bindValue(":e",$email);
             $sql->bindValue(":s",$senha);
-            $sql->bindValue(":n",$nome);
+            $sql->bindValue(":t",$telefone);
+            $sql->bindValue(":id",$id_user);
             $sql->execute();
-            
             return true;
-            
+        
+        }else{
+
+            return false;
+
         }
 
 
+    }
+
+    public function get_users(){
+
+        $sql = $this->pdo->query("SELECT * from user1");
+        
+        $dados = $sql->fetchAll(PDO::FETCH_ASSOC);
+        return $dados;
 
     }
-    public function get_dados(){
 
-        $sql = $this->pdo->query("SELECT * FROM user");
-        $sql -> execute();
-        $dados = array();
-        $dados = $sql -> fetchAll(PDO::FETCH_ASSOC); //recebendo varios dicionarios equivalentes a cada linha no banco
+    public function get_by_id($id_user){
+
+        $sql = $this->pdo->prepare("SELECT * from user1 WHERE id_user = :id");
+        $sql->bindValue(":id",$id_user);
+        $sql->execute();
 
         if($sql->rowCount() > 0){
 
-            return $dados; 
+            $dados = $sql->fetchAll(PDO::FETCH_ASSOC);
+            return $dados;
 
         }else{
-            
             return false;
+
         }
+
     }
 
+    public function deletar($id_user){
+
+        $sql = $this->pdo->prepare("SELECT * from user1 WHERE id_user = :id");
+        $sql->bindValue(":id",$id_user);
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+
+            $sql = $this->pdo->prepare("DELETE FROM user1 WHERE id_user = :id");
+            $sql->bindValue(":id",$id_user);
+            $sql->execute();
+            
+            return true;
+
+
+        }else{
+            return false;
+        }
+
+    }
 
 
 }
